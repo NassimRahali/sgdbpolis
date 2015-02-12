@@ -5,6 +5,8 @@
  */
 package RechCI;
 
+import java.sql.Blob;
+
 /**
  *
  * @author Thibault
@@ -33,6 +35,8 @@ public class MovieDetails
     private String Tagline;
     private String PosterPath;
     private String ActorsPaths;
+    
+    private Blob Image;
 
     /**
      * @return the Id
