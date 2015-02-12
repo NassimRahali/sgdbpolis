@@ -37,7 +37,7 @@ public class ActorsDetails extends javax.swing.JFrame
             String path = "";
             if(entry.getValue().equals("NR"))
             {
-                
+                path = "<html> <img src=\"https://lh5.googleusercontent.com/-tHVczjX7COs/AAAAAAAAAAI/AAAAAAAA0Cg/0_Sd9gpSpSI/w48-c-h48/photo.jpg" + "\"> </html>";
             }
             else
             {

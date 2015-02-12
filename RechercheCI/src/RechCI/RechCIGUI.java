@@ -611,9 +611,16 @@ public class RechCIGUI extends javax.swing.JFrame
         if(!_id.isEmpty())
         {
             // On effectue la requête - récup: id (par défaut), title uniquement
-            DBObject queryDoc = new BasicDBObject("_id", Integer.parseInt(_id));
-            DBObject projectionDoc = new BasicDBObject("title", 1);
-            DBObject document = collection.findOne(queryDoc, projectionDoc);
+            DBObject queryDoc, projectionDoc, document;
+            try
+            {
+                queryDoc = new BasicDBObject("_id", Integer.parseInt(_id));
+                projectionDoc = new BasicDBObject("title", 1);
+                document = collection.findOne(queryDoc, projectionDoc);
+            } catch (NumberFormatException ex)
+            {
+                document = null;
+            }
             
             if(document != null)
             {
@@ -628,7 +635,7 @@ public class RechCIGUI extends javax.swing.JFrame
             {
                 this.lbMongo.setBackground(Color.RED);
                 this.lbMongo.setText("Recherche sur "
-                        + Integer.parseInt(_id)
+                        + _id
                         + " effectuée. ID introuvable.");
             }
             
@@ -753,7 +760,7 @@ public class RechCIGUI extends javax.swing.JFrame
         {
             SimpleDateFormat sdfApres = new SimpleDateFormat("yyyy-MM-dd");
             String dateApres = sdfApres.format(cApres.getTime());
-            System.out.println(dateApres);
+            System.out.println("date après : " + dateApres);
             listeRequetes.add(new BasicDBObject("release_date", new BasicDBObject("$gte", dateApres)));
         }
         
@@ -762,7 +769,7 @@ public class RechCIGUI extends javax.swing.JFrame
         {
             SimpleDateFormat sdfAvant = new SimpleDateFormat("yyyy-MM-dd");
             String dateAvant = sdfAvant.format(cAvant.getTime());
-            System.out.println(dateAvant);
+            System.out.println("date avant : " + dateAvant);
             listeRequetes.add(new BasicDBObject("release_date", new BasicDBObject("$lte", dateAvant)));
         }
         
@@ -837,7 +844,7 @@ public class RechCIGUI extends javax.swing.JFrame
         List<MovieToOracle> ListMovies = new ArrayList<>();
         cursor.forEach(dbObject ->
         {
-            displayDocumentConsole(dbObject);            
+            displayDocumentConsole(dbObject);
             Map<String,String> map = new HashMap<>();
             dbObject.keySet().stream().forEach(k ->
             {

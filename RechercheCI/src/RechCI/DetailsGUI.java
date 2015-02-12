@@ -206,7 +206,7 @@ public class DetailsGUI extends javax.swing.JFrame
     private void bActeursActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_bActeursActionPerformed
     {//GEN-HEADEREND:event_bActeursActionPerformed
         Map actorsPath = new HashMap<>();
-        
+        //System.out.println(actorsBrut);
         String[] tokenActors = actorsBrut.split("\"name\" : \"");
         String[] tokenPaths = actorsBrut.split("\"profile_path\" : \"");
         String[] tokenRoles = actorsBrut.split("\"character\" : \"");
@@ -223,7 +223,7 @@ public class DetailsGUI extends javax.swing.JFrame
                 actRole = "<html>" + act[0] + "<br>" + role[0] + "</html>";
             } catch(ArrayIndexOutOfBoundsException ex)
             {
-                actRole = "";
+                actRole = "NR";
             }
             
             try
@@ -232,7 +232,7 @@ public class DetailsGUI extends javax.swing.JFrame
                 actorsPath.put(actRole, path[0]);
             } catch(NullPointerException ex)
             {
-                actorsPath.put(actRole, "Undefined");
+                actorsPath.put(actRole, "NR");
             }
         }
         
