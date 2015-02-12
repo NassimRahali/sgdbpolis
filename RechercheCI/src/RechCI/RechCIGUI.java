@@ -845,7 +845,7 @@ public class RechCIGUI extends javax.swing.JFrame
                 Object value = dbObject.get(k);
                 if(value != null)
                     map.put(k, value.toString());
-                //System.out.println(k + "::" + value.toString());
+                System.out.println(k + "::" + value.toString());
             });
             
             MovieToOracle mto = new MovieToOracle();

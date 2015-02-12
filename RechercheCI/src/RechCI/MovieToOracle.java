@@ -25,20 +25,20 @@ import javax.sql.rowset.serial.SerialBlob;
  */
 public class MovieToOracle
 {
-    private int Id;
+    private Integer Id;
     private String Title;
     private String Overview;
     private Timestamp Released_date;
-    private double Vote_average;
-    private int Vote_count;
+    private Double Vote_average;
+    private Integer Vote_count;
     private String Certification;
-    private String Production_country;
-    private int Runtime;
+    private Integer Runtime;
     
     private Map<Integer, String> Artists;
     private Map<String, String> Languages;
     private Map<Integer, String> Genres;
     private Map<Integer, String> Companies;
+    private Map<String, String> ProductionCountry;
     //Certifications ???
     
     private Blob Image;
@@ -49,48 +49,63 @@ public class MovieToOracle
         Languages = new HashMap<>();
         Genres = new HashMap<>();
         Companies = new HashMap<>();
+        ProductionCountry = new HashMap<>();
     }
     
-
-    public int getId()
+    
+    public Integer getId()
     {
         return Id;
     }
-
+    
     public void setId(String Id)
     {
         int id = Integer.parseInt(Id);
         System.out.println("_id : " + id);
         this.Id = id;
     }
-
+    
     public String getTitle()
     {
         return Title;
     }
-
+    
     public void setTitle(String Title)
     {
         System.out.println("title : " + Title);
+        Title = Title.trim();
+        if(Title.length() > 100)
+        {
+            Title = Title.substring(0, 99);
+        }
         this.Title = Title;
     }
-
+    
     public String getOverview()
     {
         return Overview;
     }
-
+    
     public void setOverview(String Overview)
     {
         System.out.println("overview : " + Overview);
+        Overview = Overview.trim();
+        if(Overview.length() > 1000)
+        {
+            Overview = Overview.substring(0, 999);
+        }
         this.Overview = Overview;
     }
-
-    public Timestamp getReleased_date()
+    
+    public Object getReleased_date()
     {
+        if(Released_date == null)
+        {
+            return java.sql.Types.NULL;
+        }
         return Released_date;
     }
-
+    
     public void setReleased_date(String RDate)
     {
         try
@@ -103,76 +118,130 @@ public class MovieToOracle
         }
         catch(Exception ex)
         {
-            java.util.logging.Logger.getLogger(MovieToOracle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            this.Released_date = null;
         }
     }
-
-    public double getVote_average()
+    
+    public Object getVote_average()
     {
+        if(Vote_average <= 0)
+        {
+            return java.sql.Types.NULL;
+        }
+        if(Vote_average == null)
+        {
+            return java.sql.Types.NULL;
+        }
         return Vote_average;
     }
-
+    
     public void setVote_average(String Vote_average)
     {
-        double vote = Double.parseDouble(Vote_average);
-        System.out.println("vote average : " + vote);
-        this.Vote_average = vote;
+        try
+        {
+            double vote = Double.parseDouble(Vote_average);
+            System.out.println("vote average : " + vote);
+            this.Vote_average = vote;
+        } catch(Exception ex)
+        {
+            this.Vote_average = null;
+        }
     }
-
-    public int getVote_count()
+    
+    public Object getVote_count()
     {
+        if(Vote_count == null)
+        {
+            return java.sql.Types.NULL;
+        }
+        if(Vote_count <= 0)
+        {
+            return java.sql.Types.NULL;
+        }
         return Vote_count;
     }
-
+    
     public void setVote_count(String Vote_count)
     {
-        int vote = Integer.parseInt(Vote_count);
-        System.out.println("vote count : " + vote);
-        this.Vote_count = vote;
+        try
+        {
+            int vote = Integer.parseInt(Vote_count);
+            System.out.println("vote count : " + vote);
+            this.Vote_count = vote;
+        } catch(Exception ex)
+        {
+            this.Vote_count = null;
+        }
     }
-
-    public String getCertification()
+    
+    public Object getCertification()
     {
+        if(Certification == null)
+        {
+            return java.sql.Types.NULL;
+        }
         return Certification;
     }
-
+    
     public void setCertification(String Certification)
     {
+        Certification = Certification.trim();
+        if(Certification.length() > 5)
+        {
+            Certification = null;
+        }
         System.out.println("certification : " + Certification);
         this.Certification = Certification;
     }
-
-    public String getProduction_country()
+    
+    public Object getProductionCountry()
     {
-        return Production_country;
+        return ProductionCountry;
     }
-
+    
     public void setProduction_country(String Production_country)
     {
         String[] token = Production_country.split("\"name\" : \"");
+        String[] tokenID = Production_country.split("\"iso_3166_1\" : \"");
         String[] countries = token[1].split("\"");
+        String[] id = tokenID[1].split("\"");
         String country = countries[0];
-        System.out.println(country);
-        this.Production_country = country;
+        String idC = id[0];
+        System.out.println("iso : " + idC + " country : " + country);
+        this.ProductionCountry.put(idC, country);
     }
-
-    public int getRuntime()
+    
+    public Object getRuntime()
     {
+        if(Runtime <= 0)
+        {
+            return java.sql.Types.NULL;
+        }
+        if(Runtime == null)
+        {
+            return java.sql.Types.NULL;
+        }
         return Runtime;
     }
-
+    
     public void setRuntime(String Runtime)
     {
-        int run = Integer.parseInt(Runtime);
-        System.out.println("runtime : " + run);
-        this.Runtime = run;
+        try
+        {
+            int run = Integer.parseInt(Runtime);
+            System.out.println("runtime : " + run);
+            this.Runtime = run;
+        } catch (Exception ex)
+        {
+            this.Runtime = null;
+        }
     }
-
+    
     public Map<Integer, String> getArtists()
     {
         return Artists;
     }
-
+    
     public void setArtists(String actors)
     {
         String[] tokenID = actors.split("\"id\" : ");
@@ -181,6 +250,11 @@ public class MovieToOracle
         {
             String[] strAct = tokenActors[i+1].split("\"");
             String actor = strAct[0];
+            actor = actor.trim();
+            if(actor.length() > 50)
+            {
+                actor = actor.substring(0, 49);
+            }
             String[] strID = tokenID[i+1].split(" , ");
             String idS = strID[0];
             int id = Integer.parseInt(idS);
@@ -188,12 +262,12 @@ public class MovieToOracle
             System.out.println("id : " + id + " name : " + actor);
         }
     }
-
+    
     public Map<String, String> getLanguages()
     {
         return Languages;
     }
-
+    
     public void setLanguages(String languages)
     {
         String[] tokenISO = languages.split("\"iso_639_1\" : \"");
@@ -202,18 +276,23 @@ public class MovieToOracle
         {
             String[] strLang = tokenLang[i+1].split("\"");
             String lang = strLang[0];
+            lang = lang.trim();
+            if(lang.length() > 20)
+            {
+                lang = lang.substring(0, 19);
+            }
             String[] strISO = tokenISO[i+1].split("\"");
             String ISO = strISO[0];
             Languages.put(ISO, lang);
             System.out.println("iso : " + ISO + " language : " + lang);
         }
     }
-
+    
     public Map<Integer, String> getGenres()
     {
         return Genres;
     }
-
+    
     public void setGenres(String genres)
     {
         String[] tokenID = genres.split("\"id\" : ");
@@ -222,6 +301,11 @@ public class MovieToOracle
         {
             String[] strGenre = tokenGenres[i+1].split("\"");
             String genre = strGenre[0];
+            genre = genre.trim();
+            if(genre.length() > 16)
+            {
+                genre = genre.substring(0, 15);
+            }
             String[] strID = tokenID[i+1].split(" , ");
             String idS = strID[0];
             int id = Integer.parseInt(idS);
@@ -229,12 +313,12 @@ public class MovieToOracle
             System.out.println("id : " + id + " genre : " + genre);
         }
     }
-
+    
     public Map<Integer, String> getCompanies()
     {
         return Companies;
     }
-
+    
     public void setCompanies(String companies)
     {
         String[] tokenID = companies.split("\"id\" : ");
@@ -243,6 +327,11 @@ public class MovieToOracle
         {
             String[] strComp = tokenComp[i+1].split("\"");
             String comp = strComp[0];
+            comp = comp.trim();
+            if(comp.length() > 70)
+            {
+                comp = comp.substring(0, 69);
+            }
             String[] strID = tokenID[i+1].split("}");
             String idS = strID[0];
             int id = Integer.parseInt(idS);
@@ -250,18 +339,22 @@ public class MovieToOracle
             System.out.println("id : " + id + " Company : " + comp);
         }
     }
-
-    public Blob getImage()
+    
+    public Object getImage()
     {
+        if(Image == null)
+        {
+            return java.sql.Types.NULL;
+        }
         return Image;
     }
-
+    
     public void setImage(String img)
     {
-        try 
+        try
         {
             URL url = new URL("http://cf2.imgobject.com/t/p/w185" + img);
-            InputStream is = url.openStream();            
+            InputStream is = url.openStream();
             byte[] buff = new byte[is.available()];
             
             int n = 0;
@@ -271,7 +364,7 @@ public class MovieToOracle
             
         } catch (IOException | SQLException ex)
         {
-            Logger.getLogger(MovieToOracle.class.getName()).log(Level.SEVERE, null, ex);
+            this.Image = null;
         }
     }
 }
