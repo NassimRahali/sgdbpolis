@@ -2,18 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Nassim/Desktop/TP%20SGBD/RechercheCI/src/utils/oracle/OraProcedures.java</file>
-            <file>file:/C:/Users/Nassim/Desktop/TP%20SGBD/RechercheCI/src/utils/oracle/OraInsertion.java</file>
-            <file>file:/C:/Users/Nassim/Desktop/TP%20SGBD/RechercheCI/src/utils/oracle/OraFunctions.java</file>
-            <file>file:/C:/Users/Nassim/Desktop/TP%20SGBD/RechercheCI/src/RechCI/DetailsGUI.java</file>
-            <file>file:/C:/Users/Nassim/Desktop/TP%20SGBD/RechercheCI/src/RechCI/ActorsDetails.java</file>
-            <file>file:/C:/Users/Nassim/Desktop/TP%20SGBD/RechercheCI/src/RechCI/MovieDetails.java</file>
-            <file>file:/C:/Users/Nassim/Desktop/TP%20SGBD/RechercheCI/src/RechCI/RechCIGUI.java</file>
-        </group>
         <group name="Group SGBD">
             <file>file:/C:/Users/kaoutare/Desktop/Dropbox/SGBD/RechercheCI/src/RechCI/RechCIGUI.java</file>
             <file>file:/C:/Users/kaoutare/Desktop/Dropbox/SGBD/RechercheCI/src/RechCI/ActorsDetails.java</file>
+        </group>
+        <group>
+            <file>file:/Users/Thibault/Documents/Ecole/GitHub/sgdbpolis/RechercheCI/src/RechCI/RechCIGUI.java</file>
         </group>
     </open-files>
 </project-private>

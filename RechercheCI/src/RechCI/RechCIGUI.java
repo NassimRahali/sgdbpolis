@@ -408,7 +408,6 @@ public class RechCIGUI extends javax.swing.JFrame
         lbMongo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbMongo.setOpaque(true);
 
-        tResults.setAutoCreateRowSorter(true);
         tResults.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
@@ -838,14 +837,14 @@ public class RechCIGUI extends javax.swing.JFrame
         List<MovieToOracle> ListMovies = new ArrayList<>();
         cursor.forEach(dbObject ->
         {
-            //displayDocumentConsole(dbObject);            
+            displayDocumentConsole(dbObject);            
             Map<String,String> map = new HashMap<>();
             dbObject.keySet().stream().forEach(k ->
             {
                 Object value = dbObject.get(k);
                 if(value != null)
                     map.put(k, value.toString());
-                System.out.println(k + "::" + value.toString());
+                //System.out.println(k + "::" + value.toString());
             });
             
             MovieToOracle mto = new MovieToOracle();

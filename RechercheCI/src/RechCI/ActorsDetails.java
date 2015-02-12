@@ -34,7 +34,15 @@ public class ActorsDetails extends javax.swing.JFrame
         for(Map.Entry<String, String> entry : actorsPath.entrySet())
         {
             String act = entry.getKey();
-            String path = "<html> <img src=\"http://cf2.imgobject.com/t/p/w185" + entry.getValue() + "\"> </html>";
+            String path = "";
+            if(entry.getValue().equals("NR"))
+            {
+                
+            }
+            else
+            {
+                path = "<html> <img src=\"http://cf2.imgobject.com/t/p/w185" + entry.getValue() + "\"> </html>";
+            }
             String[] row = {act, path};
             dtm.addRow(row);
         }
