@@ -1,99 +1,137 @@
 /* PACKAGE SPEC */
 CREATE OR REPLACE PACKAGE ALIMCB_PKG AS
 
+	PROCEDURE insert_cb
+    (
+		movie_movi				IN MOVIES_T,
+		image_movi				IN IMAGES_T,
+		arti_movi				IN ARR_ARTISTS_T,
+		direct_movi 			IN ARR_MOVIE_DIRECT_T,
+		genre_movi				IN ARR_GENRES_T,
+		lang_movi				IN ARR_SPOKEN_LANG_T,
+		comp_movi				IN ARR_PRODUCTION_COMPAGNIES_T,
+		country					IN COUNTRIES_T,
+		numCop_movi				IN INTEGER
+    );
+
+	PROCEDURE insert_artists
+    (
+		artists_art				IN ARR_ARTISTS_T,
+		movie_art				IN MOVIES.id%type,
+		isActor					IN INTEGER
+    );
+	
+	PROCEDURE insert_genres
+    (
+		genre_gen				IN ARR_GENRES_T,
+		movie_gen				IN MOVIES.id%type
+    );
+  
+	PROCEDURE insert_langs
+    (
+		lang_lan				IN ARR_SPOKEN_LANG_T,
+		movie_lan				IN MOVIES.id%type
+    );
+  
+	PROCEDURE insert_companies
+    (
+		comp_com				IN ARR_PRODUCTION_COMPAGNIES_T,
+		movie_com				IN MOVIES.id%type
+    );
+
 	PROCEDURE insert_artist
 		(
-			id					IN ARTISTS.id%type,
-			name				IN ARTISTS.name%type
+			id_artist			IN ARTISTS.id%type,
+			name_artist			IN ARTISTS.name%type
 		);
 
 	PROCEDURE insert_certification
 		(
-			id					IN MOVIES.certification%type,
-			name				IN CERTIFICATIONS.name%type,
-			description			IN CERTIFICATIONS.description%type
+			id_cert 			IN MOVIES.certification%type,
+			name_cert			IN CERTIFICATIONS.name%type,
+			description_cert	IN CERTIFICATIONS.description%type
 			-- SHOULD BE OK
 		);
 		
 	PROCEDURE insert_company
 		(
-			id					IN COMPANIES.id%type,
-			name				IN COMPANIES.name%type
+			id_commp			IN COMPANIES.id%type,
+			name_comp			IN COMPANIES.name%type
 		);
 		
 	PROCEDURE insert_country
 		(
-			code				IN MOVIES.production_country%type,
-			name				IN COUNTRIES.name%type
+			code_coun			IN MOVIES.production_country%type,
+			name_coun			IN COUNTRIES.name%type
 		);
 		
 	PROCEDURE insert_genre
 		(
-			id					IN GENRES.id%type,
-			name				IN GENRES.name%type
+			id_genre			IN GENRES.id%type,
+			name_genre			IN GENRES.name%type
 		);
 		
 	PROCEDURE insert_language
 		(
-			code				IN LANGUAGES.code%type,
-			name				IN LANGUAGES.name%type
+			code_lang			IN LANGUAGES.code%type,
+			name_lang			IN LANGUAGES.name%type
 		);
 		
 	PROCEDURE insert_movie
 		(
-			id					IN MOVIES.id%type,
-			title				IN MOVIES.title%type,
-			overview			IN MOVIES.overview%type,
-			released_date		IN MOVIES.released_date%type,
-			vote_average		IN MOVIES.vote_average%type,
-			vote_count			IN MOVIES.vote_count%type,
-			certification		IN MOVIES.certification%type,
-			production_country	IN MOVIES.production_country%type,
-			runtime				IN MOVIES.runtime%type,
-			nb_copies			IN MOVIES.nb_copies%type
+			id_mov					IN MOVIES.id%type,
+			title_mov				IN MOVIES.title%type,
+			overview_mov			IN MOVIES.overview%type,
+			released_date_mov		IN MOVIES.released_date%type,
+			vote_average_mov		IN MOVIES.vote_average%type,
+			vote_count_mov			IN MOVIES.vote_count%type,
+			certification_mov		IN MOVIES.certification%type,
+			production_country_mov	IN MOVIES.production_country%type,
+			runtime_mov				IN MOVIES.runtime%type,
+			nb_copies_mov			IN MOVIES.nb_copies%type
 		);
 		
 	PROCEDURE insert_image
 		(
-			id					IN IMAGES.id%type,
-			image				IN IMAGES.image%type,
-			movie				IN MOVIES.id%type
+			id_img					IN IMAGES.id%type,
+			image_img				IN IMAGES.image%type,
+			movie_img				IN MOVIES.id%type
 		);
 		
 	PROCEDURE insert_copies
 		(
-			num_copy			IN COPIES.num_copy%type,
-			movie				IN MOVIES.id%type
+			num_copy_cop			IN COPIES.num_copy%type,
+			movie_cop				IN MOVIES.id%type
 		);
 		
 	PROCEDURE insert_production_company
 		(
-			company				IN COMPANIES.id%type,
-			movie				IN MOVIES.id%type
+			company_pc				IN COMPANIES.id%type,
+			movie_pc				IN MOVIES.id%type
 		);
 		
 	PROCEDURE insert_spoken_lang
 		(
-			lang				IN LANGUAGES.code%type,
-			movie				IN MOVIES.id%type	
+			lang_slang				IN LANGUAGES.code%type,
+			movie_slang			IN MOVIES.id%type	
 		);
 		
 	PROCEDURE insert_movie_direct
 		(
-			movie				IN MOVIES.id%type,
-			director			IN ARTISTS.id%type
+			movie_dir				IN MOVIES.id%type,
+			director_dir			IN ARTISTS.id%type
 		);
 
 	PROCEDURE insert_movie_genre
 		(
-			genre				IN GENRES.id%type,
-			movie				IN MOVIES.id%type
+			genre_genr				IN GENRES.id%type,
+			movi_genr				IN MOVIES.id%type
 		);
 
 	PROCEDURE insert_movie_play
 		(
-			movie				IN MOVIES.id%type,
-			artist				IN ARTISTS.id%type
+			movie_play				IN MOVIES.id%type,
+			artist_play				IN ARTISTS.id%type
 		);
 	
 	FUNCTION is_movie_exists() RETURN INTEGER;
@@ -103,6 +141,120 @@ END ALIMCB;
 CREATE OR REPLACE PACKAGE BODY PKG_ALIMCB 
 AS -- PACKAGE BODY
 
+	/* DEBUT INSERT_CB */
+	PROCEDURE insert_cb
+	(
+		movie_movi				IN MOVIES_T,
+		image_movi				IN IMAGE_T,
+		arti_movi				IN ARR_ARTISTS_T,
+		direct_movi 			IN ARR_MOVIE_DIRECT_T,
+		genre_movi				IN ARR_GENRES_T,
+		lang_movi				IN ARR_SPOKEN_LANG_T,
+		comp_movi				IN ARR_PRODUCTION_COMPAGNIES_T,
+		country_movi			IN COUNTRIES_T,
+		nbCop_movi				IN INTEGER
+	)
+	AS
+	BEGIN
+		MERGE INTO MOVIES m
+		USING dual
+		ON (movie_movi.id = m.id)
+		WHEN NOT MATCHED THEN
+			INSERT (id, title, overview, release_date, vote_average, vote_count,
+					certification, production_country, runtime, nb_copies)
+			VALUES (movie_movi.id, movie_movi.title, movie_movi.overview, 
+					movie_movi.release_date, movie_miv.vote_average, 
+					movie_movi.vote_count, movie_movi.certification,
+					movie_movi.production_country, movie_movi.runtime,
+					movie_movi.nd_copies);	
+    
+		insert_artists(arti_movi, movie_movi.id, 1);
+		insert_artists(direct_movi, movie_movi.id, 0);
+		insert_genres(genre_movi, movie_movi.id);
+		insert_langs(lang_movi, movie_movi.id);
+		insert_companies(comp_movi, movie_movi.id);
+	
+	IF rCoun.Id IS NOT NULL
+    THEN
+    BEGIN
+      insert_country(country_movi.code, country_movi.name);
+      
+      EXCEPTION
+        WHEN OTHERS THEN NULL;
+    END;
+    END IF;
+    
+    add_copies(movie_movi.ide, nbCop_movi);
+    
+    EXCEPTION
+        WHEN OTHERS THEN /* TO DO */
+	END insert_cb;
+	/* FIN INSERT_CB */
+
+	/* DEBUT INSERT_ARTISTS */
+	PROCEDURE insert_artists
+    (
+		artists_art				IN ARR_ARTISTS_T,
+		movie_art				IN MOVIES.id%type,
+		isActor					IN INTEGER
+    )
+	AS
+		BEGIN
+		IF artists_art IS NOT NULL
+		THEN
+		  FOR cpt IN 1..artists_art.count LOOP
+			  BEGIN
+				insert_artist(artists_art(cpt).id, artists_art(cpt).name);
+				IF isActor == 1
+					THEN
+						insert_movie_play(artists_art(cpt).id, movie_art(cpt).id);
+					ELSE
+						insert_movie_direct(artists_art(cpt).id, movie_art(cpt).id);
+				END IF;
+				EXCEPTION
+				  WHEN OTHERS THEN CONTINUE;
+			  END;
+		 END LOOP;
+		END IF;
+		
+		EXCEPTION
+		  WHEN OTHERS THEN /*TO DO */
+	END insert_artists;
+	/* FIN INSERT_ARTISTS */
+
+	/* DEBUT INSERT_GENRES */
+	PROCEDURE insert_genres
+    (
+		genre_gen				IN ARR_GENRES_T,
+		movie_gen				IN MOVIES.id%type
+    )
+    )
+	/* FIN INSERT_GENRES */
+  
+	/* DEBUT INSERT_LANGS */
+	PROCEDURE insert_langs
+    (
+		lang_lan				IN ARR_SPOKEN_LANG_T,
+		movie_lan				IN MOVIES.id%type
+    )
+	/* FIN INSERT_LANGS */
+  
+	/* DEBUT INSERT_COMPAGNIES */
+	PROCEDURE insert_companies
+    (
+		comp_com				IN ARR_PRODUCTION_COMPAGNIES_T,
+		movie_com				IN MOVIES.id%type
+    )
+	/* FIN INSERT_COMPAGNIES */
+	
+	/* DEBUT ADD_COPIES */
+	PROCEDURE add_copies
+    (
+      Id  IN MOVIES.id%type,
+      Nb  IN INTEGER
+    )
+	/* FIN ADD_COPIES */
+	
 	/* DEBUT INSERT_ARTIST */
 	PROCEDURE insert_artist
 		(
@@ -204,7 +356,7 @@ AS -- PACKAGE BODY
 	END insert_genres;
 	/* FIN INSERT_GENRE */
 	
-	/* DEBUT INSERT_GENRE */
+	/* DEBUT INSERT_LANGUAGE */
 	PROCEDURE insert_language
 		(
 			code_lang			IN LANGUAGES.code%type,
@@ -222,7 +374,7 @@ AS -- PACKAGE BODY
 	EXCEPTION
 		WHEN OTHERS THEN dbms_output.put_line(SQLERRM);
 	END insert_language;
-	/* FIN INSERT_GENRE */
+	/* FIN INSERT_LANGUAGE */
 	
 	/* DEBUT INSERT_MOVIE */
 	PROCEDURE insert_movie
@@ -251,8 +403,9 @@ AS -- PACKAGE BODY
 	EXCEPTION
 		WHEN OTHERS THEN dbms_output.put_line(SQLERRM);	
 	END insert_movie;
-	/* DEBUT INSERT_MOVIE */
+	/* FIN INSERT_MOVIE */
 	
+	/* DEBUT INSERT_IMAGE */
 	PROCEDURE insert_image
 		(
 			id_img					IN IMAGES.id%type,
@@ -270,7 +423,9 @@ AS -- PACKAGE BODY
 	EXCEPTION
 		WHEN OTHERS THEN dbms_output.put_line(SQLERRM);
 	END insert_image;
+	/* FIN INSERT_IMAGE */
 	
+	/* DEBUT INSERT_COPIES */
 	PROCEDURE insert_copies
 		(
 			num_copy_cop			IN COPIES.num_copy%type,
@@ -279,7 +434,7 @@ AS -- PACKAGE BODY
 	AS
 		tmp INTEGER;
 	BEGIN
-		MERGE INTO COPIES
+		MERGE INTO COPIES cop
 		USING dual
 		ON (id = movie_cop)
 		WHEN NOT MATCHED THEN
@@ -292,7 +447,9 @@ AS -- PACKAGE BODY
 	EXCEPTION
 		WHEN OTHERS THEN dbms_output.put_line(SQLERRM);
 	END insert_copies;	
+	/* FIN INSERT_COPIES */
 
+	/* DEBUT INSERT_PRODUCTION_COMPAGNY */
 	PROCEDURE insert_production_company
 		(
 			company_pc				IN COMPANIES.id%type,
@@ -300,7 +457,7 @@ AS -- PACKAGE BODY
 		)
 	AS
 	BEGIN
-		MERGE INTO COPIES
+		MERGE INTO PRODUCTION_COMPANIES prod
 		USING dual
 		ON (MOVIES.id = company_pc AND COMPANIES.id = movie_pc)
 		WHEN NOT MATCHED THEN
@@ -308,7 +465,27 @@ AS -- PACKAGE BODY
 	EXCEPTION
 		WHEN OTHERS THEN dbms_output.put_line(SQLERRM);
 	END insert_production_company;
+	/* FIN INSERT_PRODUCTION_COMPAGNY */
 	
+	/* DEBUT INSERT_SPOKEN_LANG */
+	PROCEDURE insert_spoken_lang
+		(
+			lang_slang			IN LANGUAGES.code%type,
+			movie_slang			IN MOVIES.id%type
+		)
+	AS
+	BEGIN
+		MERGE INTO SPOKEN_LANG sl
+		USING dual
+		ON (MOVIES.id = movie_slang AND LANGUAGES.id = lang_slang)
+		WHEN NOT MATCHED THEN
+			INSERT (LANGUAGES.id, MOVIES.id) VALUES (lang_slang, movie_slang);	
+	EXCEPTION
+		WHEN OTHERS THEN dbms_output.put_line(SQLERRM);
+	END insert_spoken_lang;
+	/* FIN INSERT_SPOKEN_LANG */
+	
+	/* DEBUT INSERT_MOVIE_DIRECT*/
 	PROCEDURE insert_movie_direct
 		(
 			movie_dir				IN MOVIES.id%type,
@@ -316,29 +493,45 @@ AS -- PACKAGE BODY
 		)
 	AS
 	BEGIN
-		MERGE INTO MOVIE_DIRECT
+		MERGE INTO MOVIE_DIRECT md
 		USING dual
 		ON (MOVIES.id = movie_dir AND ARTISTS.id = director_dir)
 		WHEN NOT MATCHED THEN
 			INSERT (MOVIES.id, ARTISTS.id) VALUES (movie_dir, director_dir)
 	END insert_movie_direct;
+	/* FIN INSERT_MOVIE_DIRECT */
 	
+	/* DEBUT INSERT_MOVIE_GENRE */
 	PROCEDURE insert_movie_genre
 		(
-			genre				IN GENRES.id%type,
-			movie				IN MOVIES.id%type
+			genre_genr				IN GENRES.id%type,
+			movie_genr				IN MOVIES.id%type
 		)
 	AS
 	BEGIN
 		MERGE INTO MOVIE_GENRE
 		USING dual
-		ON (
+		ON (MOVIE.id = movie_genr AND GENRES.id = genre_genr)
+		WHEN NOT MATCHED THEN
+			INSERT (MOVIES.id, GENRES.id) VALUES (movie_genr, genre_genr)
 	END insert_movie_genre;
+	/* FIN INSERT_MOVIE_GENRE */
 	
-	PROCEDURE insert_movie_play()
+	/* DEBUT INSERT_MOVIE_PLAY */
+	PROCEDURE insert_movie_play
+		(
+			movie_play				IN MOVIES.id%type,
+			artist_play				IN ARTISTS.id%type
+		)
 	AS
 	BEGIN
+		MERGE INTO MOVIE_PLAY
+		USING dual
+		ON (MOVIE.id = movie_play AND ARTISTS.id = artist_play)
+		WHEN NOT MATCHED THEN
+			INSERT (MOVIES.id, ARTISTS.id) VALUES (movie_play, artist_play) 
 	END insert_movie_play;
+	/* FIN INSERT_MOVIE_PLAY */
 	
 	FUNCTION is_movie_exists() RETURN INTEGER
 	AS
