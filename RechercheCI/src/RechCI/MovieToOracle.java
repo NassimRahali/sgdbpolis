@@ -15,8 +15,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.sql.rowset.serial.SerialBlob;
 
 /**
@@ -185,10 +183,15 @@ public class MovieToOracle
     
     public void setCertification(String Certification)
     {
+        if(Certification == null)
+        {
+            Certification = "NULL";
+        }
+        
         Certification = Certification.trim();
         if(Certification.length() > 5)
         {
-            Certification = null;
+            Certification = "NULL";
         }
         System.out.println("certification : " + Certification);
         this.Certification = Certification;

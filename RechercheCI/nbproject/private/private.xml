@@ -7,9 +7,18 @@
             <file>file:/C:/Users/kaoutare/Desktop/Dropbox/SGBD/RechercheCI/src/RechCI/ActorsDetails.java</file>
         </group>
         <group>
-            <file>file:/Users/Thibault/Documents/Ecole/GitHub/sgdbpolis/RechercheCI/src/RechCI/DetailsGUI.java</file>
-            <file>file:/Users/Thibault/Documents/Ecole/GitHub/sgdbpolis/RechercheCI/src/RechCI/ActorsDetails.java</file>
-            <file>file:/Users/Thibault/Documents/Ecole/GitHub/sgdbpolis/RechercheCI/src/RechCI/RechCIGUI.java</file>
+            <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/utils/sqldataclasses/Language.java</file>
+            <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/RechCI/MovieToOracle.java</file>
+            <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/utils/oracle/OraInfo.java</file>
+            <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/utils/sqldataclasses/Company.java</file>
+            <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/utils/others/CBHelper.java</file>
+            <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/utils/oracle/AlimCB.java</file>
+            <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/utils/sqldataclasses/Genre.java</file>
+            <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/utils/sqldataclasses/Artist.java</file>
+            <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/utils/sqldataclasses/Movie.java</file>
+            <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/utils/sqldataclasses/Certification.java</file>
+            <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/utils/sqldataclasses/Country.java</file>
+            <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/RechCI/RechCIGUI.java</file>
         </group>
     </open-files>
 </project-private>

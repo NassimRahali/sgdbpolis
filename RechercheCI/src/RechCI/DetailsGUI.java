@@ -66,7 +66,7 @@ public class DetailsGUI extends javax.swing.JFrame
         }
         else
         {
-            dtm.setValueAt("<html> <IMG SRC=\"http://cf2.imgobject.com/t/p/w185" + md.getPosterPath() + "\"> </html>", 20, 1);
+            dtm.setValueAt("<html> <IMG SRC=\"http://image.tmdb.org/t/p/w185" + md.getPosterPath() + "\"> </html>", 20, 1);
         }
         this.tDetails.setModel(dtm);
         

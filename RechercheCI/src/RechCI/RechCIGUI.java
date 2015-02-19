@@ -3,6 +3,7 @@ package RechCI;
 
 import com.mongodb.*;
 import java.awt.Color;
+import java.io.IOException;
 import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import utils.oracle.AlimCB;
+import utils.sqldataclasses.Movie;
 
 /**
  *
@@ -841,38 +844,19 @@ public class RechCIGUI extends javax.swing.JFrame
         
         DBCursor cursor = collection.find(queryDoc);
         
-        List<MovieToOracle> ListMovies = new ArrayList<>();
+        List<Movie> mov_list = new ArrayList<>();
         cursor.forEach(dbObject ->
-        {
-            displayDocumentConsole(dbObject);
-            Map<String,String> map = new HashMap<>();
-            dbObject.keySet().stream().forEach(k ->
-            {
-                Object value = dbObject.get(k);
-                if(value != null)
-                    map.put(k, value.toString());
-                //System.out.println(k + "::" + value.toString());
-            });
-            
-            MovieToOracle mto = new MovieToOracle();
-            mto.setArtists(map.get("actors"));
-            mto.setCertification(map.get("certification"));
-            mto.setCompanies(map.get("production_companies"));
-            mto.setGenres(map.get("genres"));
-            mto.setId(map.get("_id"));
-            mto.setImage(map.get("poster_path"));
-            mto.setLanguages(map.get("spoken_languages"));
-            mto.setOverview(map.get("overview"));
-            mto.setProduction_country(map.get("production_countries"));
-            mto.setReleased_date(map.get("release_date"));
-            mto.setRuntime(map.get("runtime"));
-            mto.setTitle(map.get("title"));
-            mto.setVote_average(map.get("vote_average"));
-            mto.setVote_count(map.get("vote_count"));
-            
-            ListMovies.add(mto);
+        {            
+            mov_list.add(new Movie(dbObject));
         });
-
+        try
+        {
+            AlimCB.InsertMovies(mov_list);
+            lbMongo.setText("Commande effectuée.");
+        } catch (IOException ex)
+        {
+            Logger.getLogger(RechCIGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_miCommanderActionPerformed
     
     public void displayDocument(DBObject dbObject)

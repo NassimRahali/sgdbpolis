@@ -9,6 +9,7 @@ DROP TYPE GENRES_T FORCE;
 DROP TYPE COUNTRY_T FORCE;
 DROP TYPE COMPANY_T FORCE;
 DROP TYPE COMPANIES_T FORCE;
+DROP TYPE CERTIF_T FORCE;
 
 /* ------- */
 /* MOVIE_T */
@@ -29,7 +30,7 @@ CREATE OR REPLACE TYPE MOVIE_T AS OBJECT
     genres              GENRES_T,
     actors              ACTORS_T,
     directors           DIRECTORS_T,
-    cert                VARCHAR2(5 CHAR),
+    cert                CERTIF_T,
     copies              INTEGER
   );
 /
@@ -87,9 +88,19 @@ CREATE OR REPLACE TYPE COUNTRY_T AS OBJECT
 /* ----------------------- */
 CREATE OR REPLACE TYPE COMPANY_T AS OBJECT 
   (
-    id NUMBER(5,0),
-    name VARCHAR2(70 CHAR)
+    id    NUMBER(5,0),
+    name  VARCHAR2(70 CHAR)
   );
 /
 CREATE OR REPLACE TYPE COMPANIES_T IS TABLE OF COMPANY_T;
+/
+
+/* ---------*/
+/* CERTIF_T */
+/* ---------*/
+CREATE OR REPLACE TYPE CERTIF_T AS OBJECT 
+  (
+    name        VARCHAR2 (5 CHAR),
+    description VARCHAR2 (250 CHAR)
+  );
 /
