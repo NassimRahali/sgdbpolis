@@ -1,9 +1,15 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package GUI;
+
+import java.awt.Color;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import utils.oracle.RechCC1;
 
 /**
  *
@@ -11,15 +17,17 @@ package GUI;
  */
 public class PlacesCC1 extends javax.swing.JFrame
 {
-
+    
     /**
      * Creates new form PlacesCC1
      */
     public PlacesCC1()
     {
         initComponents();
+        
+        this.Status.setBackground(Color.green);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,6 +47,7 @@ public class PlacesCC1 extends javax.swing.JFrame
         rbOther = new javax.swing.JRadioButton();
         dcDate = new com.toedter.calendar.JDateChooser();
         bRecherche = new javax.swing.JButton();
+        Status = new javax.swing.JLabel();
         pProgrammation = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tProg = new javax.swing.JTable();
@@ -89,19 +98,25 @@ public class PlacesCC1 extends javax.swing.JFrame
             }
         });
 
+        Status.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Status.setText("Status");
+
         javax.swing.GroupLayout pSelectionJourLayout = new javax.swing.GroupLayout(pSelectionJour);
         pSelectionJour.setLayout(pSelectionJourLayout);
         pSelectionJourLayout.setHorizontalGroup(
             pSelectionJourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pSelectionJourLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pSelectionJourLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(rbToday)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
-                .addComponent(bRecherche)
-                .addGap(197, 197, 197)
-                .addComponent(rbOther)
-                .addGap(18, 18, 18)
-                .addComponent(dcDate, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pSelectionJourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pSelectionJourLayout.createSequentialGroup()
+                        .addComponent(rbToday)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
+                        .addComponent(bRecherche)
+                        .addGap(197, 197, 197)
+                        .addComponent(rbOther)
+                        .addGap(18, 18, 18)
+                        .addComponent(dcDate, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pSelectionJourLayout.setVerticalGroup(
@@ -114,7 +129,8 @@ public class PlacesCC1 extends javax.swing.JFrame
                         .addComponent(rbToday)
                         .addComponent(rbOther)
                         .addComponent(bRecherche)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Status, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
         );
 
         pProgrammation.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Programmation", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
@@ -165,14 +181,14 @@ public class PlacesCC1 extends javax.swing.JFrame
             pProgrammationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pProgrammationLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1085, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pProgrammationLayout.setVerticalGroup(
             pProgrammationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pProgrammationLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -197,11 +213,11 @@ public class PlacesCC1 extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(pProgrammation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pSelectionJour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pProgrammation, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pSelectionJour, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -232,7 +248,10 @@ public class PlacesCC1 extends javax.swing.JFrame
     {//GEN-HEADEREND:event_jMenuItem1ActionPerformed
         // Connexion à Oracle (CC1)
         
-        // Enable panel + jTable + bouton
+        
+        // Connexion réussie
+        this.Status.setText("Connection à CC1 réussie");
+        this.Status.setBackground(Color.green);
         this.pProgrammation.setEnabled(true);
         this.tProg.setEnabled(true);
         this.bRecherche.setEnabled(true);
@@ -240,9 +259,17 @@ public class PlacesCC1 extends javax.swing.JFrame
 
     private void bRechercheActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_bRechercheActionPerformed
     {//GEN-HEADEREND:event_bRechercheActionPerformed
-        
+        try
+        {
+            RechCC1.Recherche();
+            
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(PlacesCC1.class.getName()).log(Level.SEVERE, null, ex);
+        }        
     }//GEN-LAST:event_bRechercheActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */
@@ -251,8 +278,8 @@ public class PlacesCC1 extends javax.swing.JFrame
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+        */
         try
         {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
@@ -277,7 +304,7 @@ public class PlacesCC1 extends javax.swing.JFrame
             java.util.logging.Logger.getLogger(PlacesCC1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable()
         {
@@ -289,6 +316,7 @@ public class PlacesCC1 extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Status;
     private javax.swing.JButton bRecherche;
     private javax.swing.ButtonGroup bgDate;
     private com.toedter.calendar.JDateChooser dcDate;
