@@ -6,6 +6,7 @@
             <file>file:/C:/Users/kaoutare/Desktop/Dropbox/SGBD/RechercheCI/src/RechCI/RechCIGUI.java</file>
             <file>file:/C:/Users/kaoutare/Desktop/Dropbox/SGBD/RechercheCI/src/RechCI/ActorsDetails.java</file>
         </group>
+<<<<<<< Updated upstream
         <group>
             <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/utils/sqldataclasses/Language.java</file>
             <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/RechCI/MovieToOracle.java</file>
@@ -20,5 +21,8 @@
             <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/utils/sqldataclasses/Country.java</file>
             <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/RechCI/RechCIGUI.java</file>
         </group>
+=======
+        <group/>
+>>>>>>> Stashed changes
     </open-files>
 </project-private>
