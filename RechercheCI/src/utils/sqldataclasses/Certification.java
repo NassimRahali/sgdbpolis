@@ -23,7 +23,6 @@ public class Certification implements SQLData
     public Certification(String c)
     {
         name = c;
-        description = c;
         switch(name)
         {
             case "G":

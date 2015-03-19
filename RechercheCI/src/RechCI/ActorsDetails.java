@@ -41,7 +41,7 @@ public class ActorsDetails extends javax.swing.JFrame
             }
             else
             {
-                path = "<html> <img src=\"http://cf2.imgobject.com/t/p/w185" + entry.getValue() + "\"> </html>";
+                path = "<html> <img src=\"http://image.tmdb.org/t/p/w185" + entry.getValue() + "\"> </html>";
             }
             String[] row = {act, path};
             dtm.addRow(row);

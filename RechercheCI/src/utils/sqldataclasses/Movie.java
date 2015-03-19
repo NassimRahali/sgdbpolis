@@ -91,10 +91,15 @@ public class Movie implements SQLData
         }
         
 
-        List<DBObject> pc = (List)dbo.get("production_countries");
+        List<DBObject> pc = (List) dbo.get("production_countries");
         if (pc.size() != 0)
         {
             country = new Country(pc.remove(0));
+            if (country.code.isEmpty())
+            {
+                country.code = "??";
+                country.country = "NULL";
+            }
         }
         else
         {
@@ -161,6 +166,11 @@ public class Movie implements SQLData
         {
             poster_path = dbo.get("poster_path").toString();
         }
+    }
+    
+    public void setCopies(int copies)
+    {
+        this.copies = copies;
     }
     
     public InputStream getPoster()

@@ -24,8 +24,8 @@ public class Country implements SQLData
 
     public Country()
     {
-        code = "NA";
-        country = "";
+        code = "??";
+        country = "NULL";
     }
     
     public Country(DBObject object)

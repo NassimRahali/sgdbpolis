@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
  * @author Nassim
  */
 public class CBHelper
-{
+{   
     public static String CorrectInput(String str, int len, String bydefault)
     {
         if (str == null || str.isEmpty())
@@ -27,7 +27,7 @@ public class CBHelper
     
     public static Date CorrectDate(String date)
     {
-        SimpleDateFormat sf = new SimpleDateFormat("yyyy-mm-dd");
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
         Date d = null;
         try
         {

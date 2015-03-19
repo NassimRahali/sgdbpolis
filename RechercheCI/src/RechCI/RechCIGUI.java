@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -33,6 +34,7 @@ public class RechCIGUI extends javax.swing.JFrame
     DB moviesDB;
     MongoClient mongoC;
     DBCollection collection;
+    Random rand = new Random();
     
     public RechCIGUI()
     {
@@ -213,9 +215,9 @@ public class RechCIGUI extends javax.swing.JFrame
 
         tfNVotesA.setText("5814");
 
-        dcApres.setDateFormatString("dd/MM/YYYY");
+        dcApres.setDateFormatString("dd-MM-yyyy");
 
-        dcAvant.setDateFormatString("dd/MM/YYYY");
+        dcAvant.setDateFormatString("dd-MM-yyyy");
 
         bSearchOnId.setText("Recherche (ID)");
         bSearchOnId.addActionListener(new java.awt.event.ActionListener()
@@ -277,12 +279,12 @@ public class RechCIGUI extends javax.swing.JFrame
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(dcApres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(dcApres, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(dcAvant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(dcAvant, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PRechLayout.createSequentialGroup()
                         .addGroup(PRechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PRechLayout.createSequentialGroup()
@@ -368,21 +370,25 @@ public class RechCIGUI extends javax.swing.JFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfRealisateur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(PRechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(PRechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(PRechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6))
-                        .addComponent(dcApres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(dcAvant, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel8))
-                .addGroup(PRechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(21, 21, 21)
+                .addGroup(PRechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PRechLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(PRechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PRechLayout.createSequentialGroup()
+                                .addGroup(PRechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(dcAvant, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PRechLayout.createSequentialGroup()
+                                .addGroup(PRechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(dcApres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(10, 10, 10)))
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PRechLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
+                        .addGap(7, 7, 7)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(PRechLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(bRemoveGenre)
@@ -403,7 +409,7 @@ public class RechCIGUI extends javax.swing.JFrame
                     .addComponent(tfNVotesDe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14)
                     .addComponent(tfNVotesA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         PResult.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -743,9 +749,11 @@ public class RechCIGUI extends javax.swing.JFrame
             this.tfVoteA.setText("10");
         }
         
-        double voteCoLow = Double.parseDouble(this.tfNVotesDe.getText());
-        double voteCoHigh = Double.parseDouble(this.tfNVotesA.getText());
-        if(voteCoLow >= 0 && voteCoLow <= 5814 && voteCoHigh >= 0 && voteCoHigh <= 5814 && voteCoLow < voteAvHigh)
+        int voteCoLow = Integer.parseInt(this.tfNVotesDe.getText());
+        System.out.println(voteCoLow);
+        int voteCoHigh = Integer.parseInt(this.tfNVotesA.getText());
+        System.out.println(voteCoHigh);
+        if(voteCoLow >= 0 && voteCoLow <= 5814 && voteCoHigh >= 0 && voteCoHigh <= 5814 && voteCoLow <= voteCoHigh)
         {
             //System.out.println("De " + voteCoLow + " à " + voteCoHigh + " nbre de votes");
             listeRequetes.add(new BasicDBObject("vote_count", new BasicDBObject("$gte", voteCoLow)));
@@ -814,6 +822,7 @@ public class RechCIGUI extends javax.swing.JFrame
                         + _id
                         + " effectuée. ID trouvé.");
                 
+                
                 //displayDocumentConsole(document);
                 displayDetailDocument(document);
             }
@@ -846,8 +855,11 @@ public class RechCIGUI extends javax.swing.JFrame
         
         List<Movie> mov_list = new ArrayList<>();
         cursor.forEach(dbObject ->
-        {            
-            mov_list.add(new Movie(dbObject));
+        {
+            double z = rand.nextGaussian();
+            Movie m = new Movie(dbObject);
+            m.setCopies((int)((z * 2) + 5));
+            mov_list.add(m);
         });
         try
         {

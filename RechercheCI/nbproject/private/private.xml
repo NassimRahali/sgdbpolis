@@ -8,17 +8,6 @@
         </group>
 <<<<<<< Updated upstream
         <group>
-            <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/utils/sqldataclasses/Language.java</file>
-            <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/RechCI/MovieToOracle.java</file>
-            <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/utils/oracle/OraInfo.java</file>
-            <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/utils/sqldataclasses/Company.java</file>
-            <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/utils/others/CBHelper.java</file>
-            <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/utils/oracle/AlimCB.java</file>
-            <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/utils/sqldataclasses/Genre.java</file>
-            <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/utils/sqldataclasses/Artist.java</file>
-            <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/utils/sqldataclasses/Movie.java</file>
-            <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/utils/sqldataclasses/Certification.java</file>
-            <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/utils/sqldataclasses/Country.java</file>
             <file>file:/C:/Users/Nassim/Documents/Git/sgdbpolis/RechercheCI/src/RechCI/RechCIGUI.java</file>
         </group>
 =======

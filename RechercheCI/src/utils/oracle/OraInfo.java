@@ -28,7 +28,7 @@ public class OraInfo
         FileOutputStream output;
         try
         {
-            output = new FileOutputStream("connection.properties");
+            output = new FileOutputStream("config.properties");
             p.store(output, null);
             output.close();
         }

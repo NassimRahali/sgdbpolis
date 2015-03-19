@@ -73,22 +73,23 @@ public class AlimCB
             map.put("MOVIE_T", Movie.class);            
             for(Movie m : movie_list)
             {
+                // ARRAYS AND STRUCTS
+                m.initArrayAndStruct(c);
+                
+                // BLOB
+                File tmp = blobTempSaved(m.getPoster());
+                InputStream is = new FileInputStream(tmp);
+                
                 if(stmt == null)
                 {
                     stmt = c.prepareCall("{CALL ALIMCB_PKG.INSERT_CB(?, ?)}");
                 }
                 stmt.clearParameters();
-                
-                m.initArrayAndStruct(c);
-                
-                File tmp = blobTempSaved(m.getPoster());
-                InputStream is = new FileInputStream(tmp);
                 stmt.setObject(1, m);
                 stmt.setBinaryStream(2, is, tmp.length());
                 stmt.execute();
                 is.close();
-                boolean v = tmp.delete();
-                System.out.println(v);
+                tmp.delete();
                 c.commit();
             }
         } catch (SQLException ex)
