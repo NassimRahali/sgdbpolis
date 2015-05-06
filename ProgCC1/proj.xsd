@@ -2,14 +2,14 @@
   <xs:element name="programmations">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="programmation" maxOccurs="unbounded" minOccurs="0">
+        <xs:element name="seance" maxOccurs="unbounded" minOccurs="0">
           <xs:complexType>
             <xs:sequence>
-              <xs:element type="xs:integer" name="salle"/>
-              <xs:element type="xs:date" name="jour"/>
-              <xs:element type="xs:integer" name="trancheHoraire"/>
-              <xs:element type="xs:integer" name="film"/>
-              <xs:element type="xs:integer" name="copie"/>
+              <xs:element type="xs:integer" name="salle" minOccurs="1" maxOccurs="1"/>
+              <xs:element type="xs:date" name="jour" minOccurs="1" maxOccurs="1"/>
+              <xs:element type="xs:integer" name="trancheHoraire" minOccurs="1" maxOccurs="1"/>
+              <xs:element type="xs:integer" name="film" minOccurs="1" maxOccurs="1"/>
+              <xs:element type="xs:integer" name="copie" minOccurs="1" maxOccurs="1"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>

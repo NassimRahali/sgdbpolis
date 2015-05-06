@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <programmations>
-	<programmation>
+	<seance>
 		<salle>1</salle>
 	 	<jour>2015-05-12</jour>
 	 	<trancheHoraire>1</trancheHoraire>
 	 	<film>124</film>
 	 	<copie>2</copie>
- 	</programmation>
- 	<programmation>
+ 	</seance>
+ 	<seance>
 	 	<salle>2</salle>
 	 	<jour>2015-06-12</jour>
 	 	<trancheHoraire>2</trancheHoraire>
 	 	<film>123</film>
 	 	<copie>1</copie>
- 	</programmation>
- 	<programmation>
+ 	</seance>
+ 	<seance>
 	 	<salle>1</salle>
 	 	<jour>2015-05-12</jour>
 	 	<trancheHoraire>4</trancheHoraire>
 	 	<film>124</film>
 	 	<copie>1</copie>
- 	</programmation>
- 	<programmation>
+ 	</seance>
+ 	<seance>
 	 	<salle>3</salle>
 	 	<jour>2015-06-12</jour>
 	 	<trancheHoraire>3</trancheHoraire>
 	 	<film>123</film>
 	 	<copie>2</copie>
- 	</programmation>
- 	<programmation>
+ 	</seance>
+ 	<seance>
 	 	<salle>4</salle>
 	 	<jour>2015-06-12</jour>
 	 	<trancheHoraire>2</trancheHoraire>
 	 	<film>122</film>
 	 	<copie>1</copie>
- 	</programmation>
+ 	</seance>
 </programmations>
