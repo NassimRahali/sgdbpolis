@@ -7,6 +7,9 @@ package GUI;
 
 import java.awt.Color;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import utils.oracle.RechCC1;
@@ -48,12 +51,29 @@ public class PlacesCC1 extends javax.swing.JFrame
         dcDate = new com.toedter.calendar.JDateChooser();
         bRecherche = new javax.swing.JButton();
         Status = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         pProgrammation = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tProg = new javax.swing.JTable();
+        pProgrammation1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tProg1 = new javax.swing.JTable();
+        pProgrammation2 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tProg2 = new javax.swing.JTable();
+        pProgrammation3 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tProg3 = new javax.swing.JTable();
+        pProgrammation4 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tProg4 = new javax.swing.JTable();
+        pProgrammation5 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tProg5 = new javax.swing.JTable();
+        pProgrammation6 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tProg6 = new javax.swing.JTable();
         jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -67,6 +87,7 @@ public class PlacesCC1 extends javax.swing.JFrame
         pSelectionJour.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sélection du jour de projection", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
         bgDate.add(rbToday);
+        rbToday.setSelected(true);
         rbToday.setText("Aujourd'hui");
         rbToday.addActionListener(new java.awt.event.ActionListener()
         {
@@ -89,7 +110,6 @@ public class PlacesCC1 extends javax.swing.JFrame
         dcDate.setEnabled(false);
 
         bRecherche.setText("Recherche");
-        bRecherche.setEnabled(false);
         bRecherche.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -111,9 +131,9 @@ public class PlacesCC1 extends javax.swing.JFrame
                     .addComponent(Status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pSelectionJourLayout.createSequentialGroup()
                         .addComponent(rbToday)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(bRecherche)
-                        .addGap(197, 197, 197)
+                        .addGap(194, 194, 194)
                         .addComponent(rbOther)
                         .addGap(18, 18, 18)
                         .addComponent(dcDate, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -130,36 +150,36 @@ public class PlacesCC1 extends javax.swing.JFrame
                         .addComponent(rbOther)
                         .addComponent(bRecherche)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Status, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+                .addComponent(Status, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addGap(33, 33, 33))
         );
 
         pProgrammation.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Programmation", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
-        pProgrammation.setEnabled(false);
 
         tProg.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String []
             {
-                "Date", "Titre", "Réalisateurs", "Public", "Durée", "Séance", "Salle", "Places restantes"
+                "Titre", "Réalisateurs", "Public", "Durée", "Séance", "Salle", "Places restantes"
             }
         )
         {
             Class[] types = new Class []
             {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean []
             {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex)
@@ -172,7 +192,6 @@ public class PlacesCC1 extends javax.swing.JFrame
                 return canEdit [columnIndex];
             }
         });
-        tProg.setEnabled(false);
         jScrollPane1.setViewportView(tProg);
 
         javax.swing.GroupLayout pProgrammationLayout = new javax.swing.GroupLayout(pProgrammation);
@@ -181,31 +200,372 @@ public class PlacesCC1 extends javax.swing.JFrame
             pProgrammationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pProgrammationLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1085, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1076, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pProgrammationLayout.setVerticalGroup(
             pProgrammationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pProgrammationLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jMenu3.setText("Connexion");
+        jTabbedPane1.addTab("   J  ", pProgrammation);
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setText("Connexion Oracle");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
+        pProgrammation1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Programmation", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        tProg1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
             {
-                jMenuItem1ActionPerformed(evt);
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String []
+            {
+                "Titre", "Réalisateurs", "Public", "Durée", "Séance", "Salle", "Places restantes"
+            }
+        )
+        {
+            Class[] types = new Class []
+            {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean []
+            {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex)
+            {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit [columnIndex];
             }
         });
-        jMenu3.add(jMenuItem1);
+        jScrollPane2.setViewportView(tProg1);
 
-        jMenuBar2.add(jMenu3);
+        javax.swing.GroupLayout pProgrammation1Layout = new javax.swing.GroupLayout(pProgrammation1);
+        pProgrammation1.setLayout(pProgrammation1Layout);
+        pProgrammation1Layout.setHorizontalGroup(
+            pProgrammation1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pProgrammation1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1076, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pProgrammation1Layout.setVerticalGroup(
+            pProgrammation1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pProgrammation1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("J+1", pProgrammation1);
+
+        pProgrammation2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Programmation", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        tProg2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String []
+            {
+                "Titre", "Réalisateurs", "Public", "Durée", "Séance", "Salle", "Places restantes"
+            }
+        )
+        {
+            Class[] types = new Class []
+            {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean []
+            {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex)
+            {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tProg2);
+
+        javax.swing.GroupLayout pProgrammation2Layout = new javax.swing.GroupLayout(pProgrammation2);
+        pProgrammation2.setLayout(pProgrammation2Layout);
+        pProgrammation2Layout.setHorizontalGroup(
+            pProgrammation2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pProgrammation2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1076, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pProgrammation2Layout.setVerticalGroup(
+            pProgrammation2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pProgrammation2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("J+2", pProgrammation2);
+
+        pProgrammation3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Programmation", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        tProg3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String []
+            {
+                "Titre", "Réalisateurs", "Public", "Durée", "Séance", "Salle", "Places restantes"
+            }
+        )
+        {
+            Class[] types = new Class []
+            {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean []
+            {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex)
+            {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(tProg3);
+
+        javax.swing.GroupLayout pProgrammation3Layout = new javax.swing.GroupLayout(pProgrammation3);
+        pProgrammation3.setLayout(pProgrammation3Layout);
+        pProgrammation3Layout.setHorizontalGroup(
+            pProgrammation3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pProgrammation3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1076, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pProgrammation3Layout.setVerticalGroup(
+            pProgrammation3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pProgrammation3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("J+3", pProgrammation3);
+
+        pProgrammation4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Programmation", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        tProg4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String []
+            {
+                "Titre", "Réalisateurs", "Public", "Durée", "Séance", "Salle", "Places restantes"
+            }
+        )
+        {
+            Class[] types = new Class []
+            {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean []
+            {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex)
+            {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(tProg4);
+
+        javax.swing.GroupLayout pProgrammation4Layout = new javax.swing.GroupLayout(pProgrammation4);
+        pProgrammation4.setLayout(pProgrammation4Layout);
+        pProgrammation4Layout.setHorizontalGroup(
+            pProgrammation4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pProgrammation4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1076, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pProgrammation4Layout.setVerticalGroup(
+            pProgrammation4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pProgrammation4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("J+4", pProgrammation4);
+
+        pProgrammation5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Programmation", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        tProg5.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String []
+            {
+                "Titre", "Réalisateurs", "Public", "Durée", "Séance", "Salle", "Places restantes"
+            }
+        )
+        {
+            Class[] types = new Class []
+            {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean []
+            {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex)
+            {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(tProg5);
+
+        javax.swing.GroupLayout pProgrammation5Layout = new javax.swing.GroupLayout(pProgrammation5);
+        pProgrammation5.setLayout(pProgrammation5Layout);
+        pProgrammation5Layout.setHorizontalGroup(
+            pProgrammation5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pProgrammation5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 1076, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pProgrammation5Layout.setVerticalGroup(
+            pProgrammation5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pProgrammation5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("J+5", pProgrammation5);
+
+        pProgrammation6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Programmation", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        tProg6.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String []
+            {
+                "Titre", "Réalisateurs", "Public", "Durée", "Séance", "Salle", "Places restantes"
+            }
+        )
+        {
+            Class[] types = new Class []
+            {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean []
+            {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex)
+            {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane7.setViewportView(tProg6);
+
+        javax.swing.GroupLayout pProgrammation6Layout = new javax.swing.GroupLayout(pProgrammation6);
+        pProgrammation6.setLayout(pProgrammation6Layout);
+        pProgrammation6Layout.setHorizontalGroup(
+            pProgrammation6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pProgrammation6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 1076, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pProgrammation6Layout.setVerticalGroup(
+            pProgrammation6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pProgrammation6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("J+6", pProgrammation6);
 
         setJMenuBar(jMenuBar2);
 
@@ -213,21 +573,19 @@ public class PlacesCC1 extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pProgrammation, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pSelectionJour, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pSelectionJour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pSelectionJour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(pProgrammation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1))
         );
 
         pack();
@@ -244,25 +602,17 @@ public class PlacesCC1 extends javax.swing.JFrame
         this.dcDate.setEnabled(false);
     }//GEN-LAST:event_rbTodayActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem1ActionPerformed
-    {//GEN-HEADEREND:event_jMenuItem1ActionPerformed
-        // Connexion à Oracle (CC1)
-        
-        
-        // Connexion réussie
-        this.Status.setText("Connection à CC1 réussie");
-        this.Status.setBackground(Color.green);
-        this.pProgrammation.setEnabled(true);
-        this.tProg.setEnabled(true);
-        this.bRecherche.setEnabled(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
     private void bRechercheActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_bRechercheActionPerformed
     {//GEN-HEADEREND:event_bRechercheActionPerformed
         try
         {
-            RechCC1.Recherche();
+            Calendar date;
+            if(this.rbToday.isSelected())
+                date = Calendar.getInstance();
+            else
+                date = this.dcDate.getCalendar();            
             
+            RechCC1.Recherche(date);            
         }
         catch (IOException ex)
         {
@@ -322,15 +672,32 @@ public class PlacesCC1 extends javax.swing.JFrame
     private com.toedter.calendar.JDateChooser dcDate;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel pProgrammation;
+    private javax.swing.JPanel pProgrammation1;
+    private javax.swing.JPanel pProgrammation2;
+    private javax.swing.JPanel pProgrammation3;
+    private javax.swing.JPanel pProgrammation4;
+    private javax.swing.JPanel pProgrammation5;
+    private javax.swing.JPanel pProgrammation6;
     private javax.swing.JPanel pSelectionJour;
     private javax.swing.JRadioButton rbOther;
     private javax.swing.JRadioButton rbToday;
     private javax.swing.JTable tProg;
+    private javax.swing.JTable tProg1;
+    private javax.swing.JTable tProg2;
+    private javax.swing.JTable tProg3;
+    private javax.swing.JTable tProg4;
+    private javax.swing.JTable tProg5;
+    private javax.swing.JTable tProg6;
     // End of variables declaration//GEN-END:variables
 }
