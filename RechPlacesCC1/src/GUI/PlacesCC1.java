@@ -7,6 +7,7 @@ package GUI;
 
 import java.awt.Color;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
@@ -22,6 +23,8 @@ public class PlacesCC1 extends javax.swing.JFrame
 {
     
     private ArrayList<JTable> tabs;
+    private Calendar date;
+    
     
     public PlacesCC1()
     {
@@ -36,6 +39,8 @@ public class PlacesCC1 extends javax.swing.JFrame
         tabs.add(tProg4);
         tabs.add(tProg5);
         tabs.add(tProg6);
+        
+        date = Calendar.getInstance();
     }
     
     /**
@@ -58,6 +63,7 @@ public class PlacesCC1 extends javax.swing.JFrame
         dcDate = new com.toedter.calendar.JDateChooser();
         bRecherche = new javax.swing.JButton();
         Status = new javax.swing.JLabel();
+        bAjoutPanier = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         pProgrammation = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -128,6 +134,15 @@ public class PlacesCC1 extends javax.swing.JFrame
         Status.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Status.setText("Status");
 
+        bAjoutPanier.setText("Ajouter au panier");
+        bAjoutPanier.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                bAjoutPanierActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pSelectionJourLayout = new javax.swing.GroupLayout(pSelectionJour);
         pSelectionJour.setLayout(pSelectionJourLayout);
         pSelectionJourLayout.setHorizontalGroup(
@@ -138,9 +153,11 @@ public class PlacesCC1 extends javax.swing.JFrame
                     .addComponent(Status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pSelectionJourLayout.createSequentialGroup()
                         .addComponent(rbToday)
+                        .addGap(209, 209, 209)
+                        .addComponent(bRecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(76, 76, 76)
+                        .addComponent(bAjoutPanier)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bRecherche)
-                        .addGap(194, 194, 194)
                         .addComponent(rbOther)
                         .addGap(18, 18, 18)
                         .addComponent(dcDate, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -155,10 +172,11 @@ public class PlacesCC1 extends javax.swing.JFrame
                     .addGroup(pSelectionJourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(rbToday)
                         .addComponent(rbOther)
-                        .addComponent(bRecherche)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Status, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                .addGap(33, 33, 33))
+                        .addComponent(bRecherche)
+                        .addComponent(bAjoutPanier)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Status, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pProgrammation.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Programmation", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
@@ -166,27 +184,27 @@ public class PlacesCC1 extends javax.swing.JFrame
         tProg.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String []
             {
-                "Titre", "Réalisateurs", "Public", "Durée", "Séance", "Salle", "Places restantes"
+                "Titre", "Réalisateurs", "Public", "Durée", "Séance", "Salle", "Places restantes", "Commander"
             }
         )
         {
             Class[] types = new Class []
             {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean []
             {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex)
@@ -212,9 +230,9 @@ public class PlacesCC1 extends javax.swing.JFrame
         );
         pProgrammationLayout.setVerticalGroup(
             pProgrammationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pProgrammationLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pProgrammationLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -225,27 +243,27 @@ public class PlacesCC1 extends javax.swing.JFrame
         tProg1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String []
             {
-                "Titre", "Réalisateurs", "Public", "Durée", "Séance", "Salle", "Places restantes"
+                "Titre", "Réalisateurs", "Public", "Durée", "Séance", "Salle", "Places restantes", "Commander"
             }
         )
         {
             Class[] types = new Class []
             {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean []
             {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex)
@@ -273,7 +291,7 @@ public class PlacesCC1 extends javax.swing.JFrame
             pProgrammation1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pProgrammation1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -284,27 +302,27 @@ public class PlacesCC1 extends javax.swing.JFrame
         tProg2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String []
             {
-                "Titre", "Réalisateurs", "Public", "Durée", "Séance", "Salle", "Places restantes"
+                "Titre", "Réalisateurs", "Public", "Durée", "Séance", "Salle", "Places restantes", "Commander"
             }
         )
         {
             Class[] types = new Class []
             {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean []
             {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex)
@@ -332,7 +350,7 @@ public class PlacesCC1 extends javax.swing.JFrame
             pProgrammation2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pProgrammation2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -343,27 +361,27 @@ public class PlacesCC1 extends javax.swing.JFrame
         tProg3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String []
             {
-                "Titre", "Réalisateurs", "Public", "Durée", "Séance", "Salle", "Places restantes"
+                "Titre", "Réalisateurs", "Public", "Durée", "Séance", "Salle", "Places restantes", "Commander"
             }
         )
         {
             Class[] types = new Class []
             {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean []
             {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex)
@@ -391,7 +409,7 @@ public class PlacesCC1 extends javax.swing.JFrame
             pProgrammation3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pProgrammation3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -402,27 +420,27 @@ public class PlacesCC1 extends javax.swing.JFrame
         tProg4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String []
             {
-                "Titre", "Réalisateurs", "Public", "Durée", "Séance", "Salle", "Places restantes"
+                "Titre", "Réalisateurs", "Public", "Durée", "Séance", "Salle", "Places restantes", "Commander"
             }
         )
         {
             Class[] types = new Class []
             {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean []
             {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex)
@@ -450,7 +468,7 @@ public class PlacesCC1 extends javax.swing.JFrame
             pProgrammation4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pProgrammation4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -461,27 +479,27 @@ public class PlacesCC1 extends javax.swing.JFrame
         tProg5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String []
             {
-                "Titre", "Réalisateurs", "Public", "Durée", "Séance", "Salle", "Places restantes"
+                "Titre", "Réalisateurs", "Public", "Durée", "Séance", "Salle", "Places restantes", "Commander"
             }
         )
         {
             Class[] types = new Class []
             {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean []
             {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex)
@@ -509,7 +527,7 @@ public class PlacesCC1 extends javax.swing.JFrame
             pProgrammation5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pProgrammation5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -520,27 +538,27 @@ public class PlacesCC1 extends javax.swing.JFrame
         tProg6.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String []
             {
-                "Titre", "Réalisateurs", "Public", "Durée", "Séance", "Salle", "Places restantes"
+                "Titre", "Réalisateurs", "Public", "Durée", "Séance", "Salle", "Places restantes", "Commander"
             }
         )
         {
             Class[] types = new Class []
             {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean []
             {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex)
@@ -568,7 +586,7 @@ public class PlacesCC1 extends javax.swing.JFrame
             pProgrammation6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pProgrammation6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -591,8 +609,9 @@ public class PlacesCC1 extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pSelectionJour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -613,19 +632,56 @@ public class PlacesCC1 extends javax.swing.JFrame
     {//GEN-HEADEREND:event_bRechercheActionPerformed
         try
         {
-            Calendar date;
             if(this.rbToday.isSelected())
                 date = Calendar.getInstance();
             else
-                date = this.dcDate.getCalendar();            
+                date = this.dcDate.getCalendar();
             
-            RechCC1.Recherche(this, date);            
+            RechCC1.Recherche(this, date);
         }
         catch (IOException ex)
         {
             Logger.getLogger(PlacesCC1.class.getName()).log(Level.SEVERE, null, ex);
         }        
     }//GEN-LAST:event_bRechercheActionPerformed
+
+    private void bAjoutPanierActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_bAjoutPanierActionPerformed
+    {//GEN-HEADEREND:event_bAjoutPanierActionPerformed
+        ArrayList<Object[]> rows = new ArrayList<>();
+        Object[] row = new Object[5];
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        int jour = 0;
+        for (JTable tab : tabs)
+        {
+            Calendar d = date;
+            d.add(Calendar.DAY_OF_MONTH, jour);
+            String str = sdf.format(d.getTime());
+            
+            for (int i = 0 ; i < tab.getRowCount() ; i++)
+            {
+                if(tab.getValueAt(i, 7) != null)
+                {
+                    row = new Object[] {
+                        str,
+                        tab.getValueAt(i, 0),
+                        tab.getValueAt(i, 4),
+                        tab.getValueAt(i, 5),
+                        tab.getValueAt(i, 7)
+                    };
+                    
+                    rows.add(row);
+                }
+            }
+            jour++;
+        }
+        System.out.println("rows : " + rows.size());
+        
+        Panier p = new Panier(rows);
+        p.setVisible(true);
+        
+        
+    }//GEN-LAST:event_bAjoutPanierActionPerformed
     
     /**
      * @param args the command line arguments
@@ -671,16 +727,17 @@ public class PlacesCC1 extends javax.swing.JFrame
             }
         });
     }
-
+    
     public ArrayList<JTable> getTabs()
     {
         return tabs;
     }
-
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Status;
+    private javax.swing.JButton bAjoutPanier;
     private javax.swing.JButton bRecherche;
     private javax.swing.ButtonGroup bgDate;
     private com.toedter.calendar.JDateChooser dcDate;
