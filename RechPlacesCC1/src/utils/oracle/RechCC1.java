@@ -68,6 +68,9 @@ public class RechCC1
             c = init();
         }
         
+        // Reset JTable
+        resetJTab(gui);
+        
         for(int i = 0 ; i < 7 ; i++)
         {
             try
@@ -82,16 +85,12 @@ public class RechCC1
                 Date d = new Date(date.getTime().getTime());
                 stmt.registerOutParameter(1, OracleTypes.ARRAY, "PROJECTIONS_JOUR");
                 stmt.setDate(2, d);
-                stmt.execute();
-                System.out.println("Query effectuée");
+                stmt.execute();                
                 ProjectionsJour projs = new ProjectionsJour((ARRAY)stmt.getArray(1));
-                System.out.println(projs.getProjs().get(0).getSalle());
+                System.out.println("Query effectuée : " + projs.getProjs().size());
                 
-                // Reset JTable
-                resetJTab(gui);
                 // Ajout JTable
                 ajoutJTab(projs, gui.getTabs().get(i));
-                
                 
             }
             catch (IndexOutOfBoundsException ex)

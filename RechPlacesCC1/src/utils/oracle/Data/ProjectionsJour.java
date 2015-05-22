@@ -49,6 +49,7 @@ public class ProjectionsJour implements SQLData
     @Override
     public void readSQL(SQLInput stream, String typeName) throws SQLException
     {
+        //System.exit(0);
         System.out.println(stream.readObject());
     }
 

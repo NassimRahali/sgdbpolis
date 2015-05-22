@@ -31,7 +31,8 @@ public class FilmType implements SQLData
         {
             Object[] object = s.getAttributes();
             titre = object[0].toString();
-            acteurs = object[1].toString();
+            if(object[1] != null)
+                acteurs = object[1].toString();
             cert = object[2].toString();
             duree = ((BigDecimal)object[3]).intValueExact();
         } 
