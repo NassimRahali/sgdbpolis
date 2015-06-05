@@ -52,7 +52,7 @@ public class FilmType implements SQLData
     @Override
     public void readSQL(SQLInput stream, String typeName) throws SQLException
     {
-        System.out.println(stream.readObject());
+
     }
 
     @Override

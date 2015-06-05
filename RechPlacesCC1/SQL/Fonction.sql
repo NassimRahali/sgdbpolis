@@ -12,7 +12,7 @@ PACKAGE BODY RECHCC1_PKG AS
 		jProg DATE;
 		film FILM_TYPE;
 		prog PROJECTION_TYPE;
-		progJour PROJECTIONS_JOUR;
+		progJour PROJECTIONS_JOUR := PROJECTIONS_JOUR();
 		exist NUMBER;
 		nProg NUMBER;
 		salle NUMBER;
@@ -23,6 +23,7 @@ PACKAGE BODY RECHCC1_PKG AS
 		titre VARCHAR2(200);
 		cert VARCHAR2(10);
 		duree NUMBER;
+    i NUMBER;
 	BEGIN
 		jProg := d;
 
@@ -39,10 +40,12 @@ PACKAGE BODY RECHCC1_PKG AS
 				AND EXTRACT(YEAR FROM JOUR) = EXTRACT(YEAR FROM jProg);
 
 			-- Nombre de programmations ce jour là
-			nProg := xml.EXTRACT('count(//seance)').getNumberVal();
-		
+			--nProg := xml.EXTRACT('count(//seance)').getNumberVAl();
+      --nProg := 1;
+    
 			-- Pour chaque programmation
-			FOR i in 1 .. nProg LOOP
+      i := 1;
+      --WHILE xml.existsNode('//seance[' || i || ']') = 1  LOOP
 				-- Récupérer infos séance (XPATH)
 				salle := xml.EXTRACT('//seance[' || i || ']/salle/text()').getNumberVal();
 				horaire := xml.EXTRACT('//seance[' || i || ']/trancheHoraire/text()').getNumberVal();
@@ -51,14 +54,16 @@ PACKAGE BODY RECHCC1_PKG AS
 
 				-- Récupérer infos film
 				SELECT wm_concat(NAME) INTO acteurs FROM MOVIES, MOVIE_DIRECT, ARTISTS
-				WHERE MOVIES.ID = MOVIE_DIRECT.MOVIE
+        WHERE MOVIES.ID = idFilm
+				AND MOVIES.ID = MOVIE_DIRECT.MOVIE
 				AND MOVIE_DIRECT.DIRECTOR = ARTISTS.ID;
 
 				SELECT TITLE INTO titre FROM MOVIES
 				WHERE ID = idFilm;
 
 				SELECT NAME INTO cert FROM MOVIES, CERTIFICATIONS
-				WHERE MOVIES.CERTIFICATION = CERTIFICATIONS.ID;
+        WHERE MOVIES.ID = idFilm 
+        AND MOVIES.CERTIFICATION = CERTIFICATIONS.ID;
 
 				SELECT RUNTIME INTO duree FROM MOVIES
 				WHERE ID = idFilm;
@@ -68,7 +73,8 @@ PACKAGE BODY RECHCC1_PKG AS
 				progJour.extend(1);
 				progJour(progJour.count) := prog;
 
-			END LOOP;
+        i := i + 1;
+			--END LOOP;
 		END IF;
 
 		RETURN progJour;

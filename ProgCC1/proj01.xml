@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<programmations>
+        <seance>
+                <salle>1</salle>
+                <jour>2015-01-05</jour>
+                <trancheHoraire>1</trancheHoraire>
+                <film>123</film>
+                <copie>12</copie>
+        </seance>
+        <seance>
+                <salle>1</salle>
+                <jour>2015-01-05</jour>
+                <trancheHoraire>1</trancheHoraire>
+                <film>674</film>
+                <copie>1</copie>
+        </seance> 
+</programmations>
